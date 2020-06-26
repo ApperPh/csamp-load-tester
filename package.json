@@ -1,0 +1,15 @@
+{
+  "name": "csamp-revalida",
+  "version": "1.0.0",
+  "description": "Load tester for the CSAMP for AWS and Azure.",
+  "main": "randomizer.js",
+  "scripts": {
+    "test": "artillery run ops-revalida.yml"
+  },
+  "author": "Diwa del Mundo",
+  "license": "MIT",
+  "dependencies": {
+    "faker": "^4.1.0",
+    "uuid": "^8.2.0"
+  }
+}

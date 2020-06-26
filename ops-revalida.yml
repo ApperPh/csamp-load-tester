@@ -1,0 +1,20 @@
+config:
+    target: "https://ogi82xrl37.execute-api.ap-southeast-1.amazonaws.com"
+    phases:
+        - duration: 10
+          arrivalRate: 1
+    processor: "./randomizer.js"
+scenarios:
+    - flow:
+        - function: "generateRandomData"
+        - post:
+            url: "/production/csamp-revalida-rides"
+            json:
+                riderId: "{{ randomRiderId }}"
+                bookingLocation:
+                    N: "40.446"
+                    W: "40.446"
+                targetLocation:
+                    N: "14.6323596"
+                    W: "121.0371381"
+        - log: "Sending a request with riderId {{ randomRiderId }}"
