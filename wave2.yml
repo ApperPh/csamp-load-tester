@@ -86,7 +86,7 @@ scenarios:
         - put:
             url: "/drivers/{{ randomDriverId }}/rides/{{ rideId }}/accept"
             json:
-                updatedLocation:
+                acceptLocation:
                     N: "{{ randomDriverLocN }}"
                     W: "{{ randomDriverLocW }}"
         - log: "Driver {{ randomDriverId }} accepted rideId {{ rideId }}"
