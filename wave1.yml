@@ -7,9 +7,6 @@ config:
           arrivalRate: 10
           rampTo: 50
           name: "Warm up the application"
-        - duration: 300
-          arrivalRate: 50
-          name: "Sustained max load"
     processor: "./randomizer.js"
 scenarios:
     - flow:
