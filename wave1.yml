@@ -12,7 +12,7 @@ scenarios:
     - flow:
         - function: "generateRandomData"
         - post:
-            url: "/production/csamp-revalida-rides"
+            url: "/rides"
             json:
                 riderId: "{{ randomRiderId }}"
                 bookingLocation:
@@ -21,24 +21,28 @@ scenarios:
                 targetLocation:
                     N: "{{ randomTargetLocN }}"
                     W: "{{ randomTargetLocW }}"
+            capture:
+                json: "$.rideId"
+                as: "rideId"
+        - log: "Sending a request with rideId {{ rideId }}"
         - get:
-            url: "/riders/{{ randomRiderId }}"
+            url: "/rides/{{ rideId }}"
         - get:
-            url: "/riders/{{ randomRiderId }}"
+            url: "/rides/{{ rideId }}"
         - get:
-            url: "/riders/{{ randomRiderId }}"
+            url: "/rides/{{ rideId }}"
         - get:
-            url: "/riders/{{ randomRiderId }}"
+            url: "/rides/{{ rideId }}"
         - get:
-            url: "/riders/{{ randomRiderId }}"
+            url: "/rides/{{ rideId }}"
         - get:
-            url: "/riders/{{ randomRiderId }}"
+            url: "/rides/{{ rideId }}"
         - get:
-            url: "/riders/{{ randomRiderId }}"
+            url: "/rides/{{ rideId }}"
         - get:
-            url: "/riders/{{ randomRiderId }}"
+            url: "/rides/{{ rideId }}"
         - get:
-            url: "/riders/{{ randomRiderId }}"
+            url: "/rides/{{ rideId }}"
         - get:
-            url: "/riders/{{ randomRiderId }}"
-        - log: "Sending a request with riderId {{ randomRiderId }} with booking loc ({{ randomBookingLocN }}, {{ randomBookingLocW }}), target loc ({{ randomTargetLocN }}, {{ randomTargetLocW }})"
+            url: "/rides/{{ rideId }}"
+        - log: "Sending a request with riderId {{ rideId }} with booking loc ({{ randomBookingLocN }}, {{ randomBookingLocW }}), target loc ({{ randomTargetLocN }}, {{ randomTargetLocW }})"
