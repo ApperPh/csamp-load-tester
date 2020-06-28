@@ -1,0 +1,47 @@
+config:
+    target: "{{ $processEnvironment.SERVICE_END_POINT }}"
+    phases:
+        - duration: 10
+          arrivalRate: 1
+        - duration: 120
+          arrivalRate: 10
+          rampTo: 50
+          name: "Warm up the application"
+        - duration: 300
+          arrivalRate: 50
+          name: "Sustained max load"
+    processor: "./randomizer.js"
+scenarios:
+    - flow:
+        - function: "generateRandomData"
+        - post:
+            url: "/production/csamp-revalida-rides"
+            json:
+                riderId: "{{ randomRiderId }}"
+                bookingLocation:
+                    N: "{{ randomBookingLocN }}"
+                    W: "{{ randomBookingLocW }}"
+                targetLocation:
+                    N: "{{ randomTargetLocN }}"
+                    W: "{{ randomTargetLocW }}"
+        - get:
+            url: "/riders/{{ randomRiderId }}"
+        - get:
+            url: "/riders/{{ randomRiderId }}"
+        - get:
+            url: "/riders/{{ randomRiderId }}"
+        - get:
+            url: "/riders/{{ randomRiderId }}"
+        - get:
+            url: "/riders/{{ randomRiderId }}"
+        - get:
+            url: "/riders/{{ randomRiderId }}"
+        - get:
+            url: "/riders/{{ randomRiderId }}"
+        - get:
+            url: "/riders/{{ randomRiderId }}"
+        - get:
+            url: "/riders/{{ randomRiderId }}"
+        - get:
+            url: "/riders/{{ randomRiderId }}"
+        - log: "Sending a request with riderId {{ randomRiderId }} with booking loc ({{ randomBookingLocN }}, {{ randomBookingLocW }}), target loc ({{ randomTargetLocN }}, {{ randomTargetLocW }})"
