@@ -1,0 +1,92 @@
+config:
+    target: "{{ $processEnvironment.SERVICE_END_POINT }}"
+    phases:
+        - duration: 10
+          arrivalRate: 1
+        - duration: 120
+          arrivalRate: 10
+          rampTo: 50
+          name: "Warm up the application"
+    processor: "./randomizer.js"
+scenarios:
+    - flow:
+        - function: "generateRandomData"
+        - post:
+            url: "/rides"
+            json:
+                riderId: "{{ randomRiderId }}"
+                bookingLocation:
+                    N: "{{ randomBookingLocN }}"
+                    W: "{{ randomBookingLocW }}"
+                targetLocation:
+                    N: "{{ randomTargetLocN }}"
+                    W: "{{ randomTargetLocW }}"
+            capture:
+                json: "$.rideId"
+                as: "rideId"
+        - log: "Sending a request with rideId {{ rideId }}"
+        - get:
+            url: "/rides/{{ rideId }}"
+        - get:
+            url: "/rides/{{ rideId }}"
+        - get:
+            url: "/rides/{{ rideId }}"
+        - get:
+            url: "/rides/{{ rideId }}"
+        - put:
+            url: "/drivers/{{ randomDriverId }}/locations"
+            json:
+                updatedLocation:
+                    N: "{{ randomDriverLocN }}"
+                    W: "{{ randomDriverLocW }}"
+        - log: "Sending a request with driverId {{ randomDriverId }} with loc ({{ randomDriverLocN }}, {{ randomDriverLocW }})"
+        - get:
+            url: "/rides/{{ rideId }}"
+        - get:
+            url: "/rides/{{ rideId }}"
+        - get:
+            url: "/rides/{{ rideId }}"
+        - get:
+            url: "/rides/{{ rideId }}"
+        - get:
+            url: "/rides/{{ rideId }}"
+        - get:
+            url: "/rides/{{ rideId }}"
+        - log: "Sending a request with riderId {{ randomRiderId }} with booking loc ({{ randomBookingLocN }}, {{ randomBookingLocW }}), target loc ({{ randomTargetLocN }}, {{ randomTargetLocW }})"
+        - put:
+            url: "/drivers/{{ randomDriverId }}/locations"
+            json:
+                updatedLocation:
+                    N: "{{ randomDriverLocN }}"
+                    W: "{{ randomDriverLocW }}"
+        - put:
+            url: "/drivers/{{ randomDriverId }}/locations"
+            json:
+                updatedLocation:
+                    N: "{{ randomDriverLocN }}"
+                    W: "{{ randomDriverLocW }}"
+        - put:
+            url: "/drivers/{{ randomDriverId }}/locations"
+            json:
+                updatedLocation:
+                    N: "{{ randomDriverLocN }}"
+                    W: "{{ randomDriverLocW }}"
+        - put:
+            url: "/drivers/{{ randomDriverId }}/locations"
+            json:
+                updatedLocation:
+                    N: "{{ randomDriverLocN }}"
+                    W: "{{ randomDriverLocW }}"
+        - put:
+            url: "/drivers/{{ randomDriverId }}/locations"
+            json:
+                updatedLocation:
+                    N: "{{ randomDriverLocN }}"
+                    W: "{{ randomDriverLocW }}"
+        - put:
+            url: "/drivers/{{ randomDriverId }}/rides/{{ rideId }}/accept"
+            json:
+                updatedLocation:
+                    N: "{{ randomDriverLocN }}"
+                    W: "{{ randomDriverLocW }}"
+        - log: "Driver {{ randomDriverId }} accepted rideId {{ rideId }}"
