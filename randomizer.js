@@ -27,6 +27,9 @@ function generateRandomData(userContext, events, done) {
   
   userContext.vars.randomDriverLocN = (baseTargetLong + Math.random()).toString().substring(0, 9);
   userContext.vars.randomDriverLocW = (baseTargetLat + Math.random()).toString().substring(0, 9);
+  
+  userContext.vars.randomRiderLocN = (baseTargetLong + Math.random()).toString().substring(0, 9);
+  userContext.vars.randomRiderLocW = (baseTargetLat + Math.random()).toString().substring(0, 9);
 
   return done();
 }
