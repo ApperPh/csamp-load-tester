@@ -3,19 +3,22 @@ config:
     phases:
         - duration: 20
           arrivalRate: 10
-        - duration: 60
-          arrivalRate: 20
-          rampTo: 100
-          name: "Sustained"
         - duration: 30
-          arrivalRate: 40
-          rampTo: 200
-          name: "Spike"
-        - duration: 60
-          arrivalRate: 20
+          arrivalRate: 5
+          rampTo: 30
+          name: "Sustained"
+        - duration: 15
+          arrivalRate: 5
           rampTo: 100
+          name: "Spike"
+        - duration: 30
+          arrivalRate: 5
+          rampTo: 30
           name: "Sustained"
     processor: "./randomizer.js"
+    defaults:
+        headers:
+            Authorization: 'Basic c29tZS1hcGktdG9rZW46'
 scenarios:
     - flow:
         - function: "generateRandomData"

@@ -8,6 +8,9 @@ config:
           rampTo: 50
           name: "Warm up the application"
     processor: "./randomizer.js"
+    defaults:
+        headers:
+            Authorization: 'Basic c29tZS1hcGktdG9rZW46'
 scenarios:
     - flow:
         - function: "generateRandomData"

@@ -3,11 +3,14 @@ config:
     phases:
         - duration: 10
           arrivalRate: 1
-        - duration: 120
+        - duration: 60
           arrivalRate: 10
           rampTo: 50
           name: "Warm up the application"
     processor: "./randomizer.js"
+    defaults:
+        headers:
+            Authorization: 'Basic c29tZS1hcGktdG9rZW46'
 scenarios:
     - flow:
         - function: "generateRandomData"

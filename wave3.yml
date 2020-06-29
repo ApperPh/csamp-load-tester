@@ -8,6 +8,9 @@ config:
           rampTo: 100
           name: "Sustained"
     processor: "./randomizer.js"
+    defaults:
+        headers:
+            Authorization: 'Basic c29tZS1hcGktdG9rZW46'
 scenarios:
     - flow:
         - function: "generateRandomData"
